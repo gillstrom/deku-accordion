@@ -15,7 +15,7 @@ const items = [{
 }];
 
 const app = tree(
-	<Accordion active={2} class='TestClass' items={items}/>
+	<Accordion active={[1, 2]} class='TestClass' items={items}/>
 );
 
 render(app, document.body);

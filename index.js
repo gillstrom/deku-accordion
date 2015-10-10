@@ -18,35 +18,44 @@ const propTypes = {
 
 function initialState() {
 	return {
-		active: -1
+		active: []
 	};
 }
 
 function afterMount({props}, el, setState) {
-	const {active, collapsed} = props;
+	const {active} = props;
 
-	if (typeof active === 'number' && !collapsed) {
+	if (Array.isArray(active)) {
 		setState({active});
-		return;
-	}
-
-	if (!collapsed) {
-		setState({active: 0});
 	}
 }
 
 function render({props, state}, setState) {
-	const {items} = props;
+	const {items, multiple} = props;
 	const {active} = state;
 
 	function setActive(i) {
-		setState({active: active === i ? -1 : i});
+		const index = active.indexOf(i);
+
+		if (!multiple) {
+			setState({active: [i]});
+			return;
+		}
+
+		if (index > -1) {
+			active.splice(index, 1);
+			setState({active});
+			return;
+		}
+
+		active.push(i);
+		setState({active});
 	}
 
 	function getElements() {
 		return items.map((el, i) => {
 			return (
-				<div class={['Accordion-element', {'Accordion-element--active': active === i}]}>
+				<div class={['Accordion-element', {'Accordion-element--active': active.indexOf(i) > -1}]}>
 					<div class='Accordion-heading' onClick={() => setActive(i)}>
 						{el.heading}
 					</div>

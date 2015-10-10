@@ -28,7 +28,7 @@ export function render() {
 	}];
 
 	return (
-		<Accordion items={items}/>
+		<Accordion active={[0, 1]} items={items} multiple/>
 	);
 }
 ```
@@ -36,11 +36,10 @@ export function render() {
 
 ## Attributes
 
-* `active` sets the initial active item 
+* `active` sets an initial active items
 * `class` adds classes to the component
-* `collapsed` initially sets all items as collapsed
 * `items` is the array of accordion elements
-
+* `multiple` lets you have several items open at once
 
 ## License
 
