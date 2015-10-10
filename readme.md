@@ -36,7 +36,7 @@ export function render() {
 
 ## Attributes
 
-* `active` sets an initial active items
+* `active` sets the initial active items
 * `class` adds classes to the component
 * `items` is the array of accordion elements
 * `multiple` lets you have several items open at once
