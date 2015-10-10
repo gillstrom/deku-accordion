@@ -1,0 +1,63 @@
+{
+  "name": "deku-accordion",
+  "version": "0.0.0",
+  "description": "accordion component for deku",
+  "license": "MIT",
+  "repository": "gillstrom/deku-accordion",
+  "author": {
+    "name": "Andreas Gillström",
+    "email": "andreasgillstrom@gmail.com",
+    "url": "github.com/gillstrom"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "build": "browserify example/index.js -o example/build.js -dv",
+    "test": "./node_modules/.bin/eslint index.js test.js lib/* && ava"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "component",
+    "deku",
+    "dekujs",
+    "accordion"
+  ],
+  "dependencies": {
+    "magic-virtual-element": "^1.0.6"
+  },
+  "devDependencies": {
+    "assert-element": "^0.3.1",
+    "ava": "*",
+    "babel": "^5.8.23",
+    "babel-eslint": "^4.1.1",
+    "babelify": "^6.3.0",
+    "component-mock": "0.0.2",
+    "deku": "^0.5.6",
+    "eslint": "^1.3.1",
+    "eslint-config-xo": "^0.5.0",
+    "eslint-config-xo-react": "^0.2.0",
+    "eslint-plugin-babel": "^2.1.1",
+    "eslint-plugin-react": "^3.3.1"
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true
+    },
+    "extends": [
+      "xo/esnext",
+      "xo-react"
+    ],
+    "rules": {
+      "react/no-unknown-property": 0,
+      "quote-props": 0
+    }
+  }
+}

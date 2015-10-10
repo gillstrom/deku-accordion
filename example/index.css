@@ -1,0 +1,24 @@
+.Accordion-element + .Accordion-element {
+	margin-top: 10px;
+}
+
+.Accordion-heading {
+	cursor: pointer;
+}
+
+.Accordion-heading:before {
+	content: '+ ';
+}
+
+.Accordion-element .Accordion-content {
+	display: none;
+}
+
+.Accordion-element--active .Accordion-content {
+	display: block;
+}
+
+
+.Accordion-element--active .Accordion-heading:before {
+	content: '- ';
+}
