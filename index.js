@@ -3,7 +3,7 @@ import dom from 'magic-virtual-element';
 
 const propTypes = {
 	active: {
-		type: 'number'
+		type: 'array'
 	},
 	class: {
 		type: 'string'
