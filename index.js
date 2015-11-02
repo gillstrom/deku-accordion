@@ -2,9 +2,6 @@
 import dom from 'magic-virtual-element';
 
 const propTypes = {
-	active: {
-		type: 'array'
-	},
 	class: {
 		type: 'string'
 	},
@@ -13,6 +10,9 @@ const propTypes = {
 	},
 	items: {
 		type: 'array'
+	},
+	multiple: {
+		type: 'boolean'
 	}
 };
 
@@ -23,11 +23,23 @@ function initialState() {
 }
 
 function afterMount({props}, el, setState) {
-	const {active} = props;
+	const {items, multiple} = props;
+	let active = [];
 
-	if (Array.isArray(active)) {
-		setState({active});
-	}
+	items.forEach((el, i) => {
+		if (!el.active) {
+			return;
+		}
+
+		if (!multiple) {
+			active = [i];
+			return;
+		}
+
+		active.push(i);
+	});
+
+	setState({active});
 }
 
 function render({props, state}, setState) {

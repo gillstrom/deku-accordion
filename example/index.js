@@ -8,14 +8,16 @@ const items = [{
 	heading: 'Heading 1'
 }, {
 	content: <div>Content 2</div>,
-	heading: 'Heading 2'
+	heading: 'Heading 2',
+	active: true
 }, {
 	content: <div>Content 3</div>,
-	heading: 'Heading 3'
+	heading: 'Heading 3',
+	active: true
 }];
 
 const app = tree(
-	<Accordion active={[1, 2]} class='TestClass' items={items} multiple/>
+	<Accordion class='TestClass' items={items} multiple/>
 );
 
 render(app, document.body);

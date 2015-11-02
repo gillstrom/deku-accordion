@@ -21,14 +21,16 @@ export function render() {
 		heading: 'Heading 1'
 	}, {
 		content: <div>Content 2</div>,
-		heading: 'Heading 2'
+		heading: 'Heading 2',
+		active: true
 	}, {
 		content: <div>Content 3</div>,
-		heading: 'Heading 3'
+		heading: 'Heading 3',
+		active: true
 	}];
 
 	return (
-		<Accordion active={[0, 1]} items={items} multiple/>
+		<Accordion items={items} multiple/>
 	);
 }
 ```
@@ -36,7 +38,6 @@ export function render() {
 
 ## Attributes
 
-* `active` sets the initial active items
 * `class` adds classes to the component
 * `items` is the array of accordion elements
 * `multiple` lets you have several items open at once
