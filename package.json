@@ -14,18 +14,19 @@
   },
   "scripts": {
     "build": "browserify example/index.js -o example/build.js -dv",
-    "test": "./node_modules/.bin/eslint index.js test.js lib/* && ava"
+    "test": "xo index.js test.js && ava"
   },
   "files": [
     "index.js"
   ],
   "keywords": [
+    "accordion",
     "component",
     "deku",
-    "dekujs",
-    "accordion"
+    "dekujs"
   ],
   "dependencies": {
+    "ava": "^0.2.0",
     "magic-virtual-element": "^1.0.6"
   },
   "devDependencies": {
@@ -34,29 +35,33 @@
     "babel": "^5.8.23",
     "babel-eslint": "^4.1.1",
     "babelify": "^6.3.0",
+    "browserify": "^11.2.0",
     "component-mock": "0.0.2",
     "deku": "^0.5.6",
-    "eslint": "^1.3.1",
-    "eslint-config-xo": "^0.5.0",
-    "eslint-config-xo-react": "^0.2.0",
-    "eslint-plugin-babel": "^2.1.1",
-    "eslint-plugin-react": "^3.3.1"
+    "eslint-config-xo-react": "^0.3.0",
+    "eslint-plugin-react": "^3.3.1",
+    "xo": "*"
   },
   "browserify": {
     "transform": [
       "babelify"
     ]
   },
-  "eslintConfig": {
-    "env": {
-      "browser": true
-    },
+  "xo": {
+    "envs": [
+      "browser"
+    ],
+    "esnext": true,
     "extends": [
-      "xo/esnext",
       "xo-react"
     ],
     "rules": {
+      "jsx-quotes": [
+        2,
+        "prefer-single"
+      ],
       "react/no-unknown-property": 0,
+      "react/prop-types": 0,
       "quote-props": 0
     }
   }
