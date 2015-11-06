@@ -50,11 +50,16 @@ function render({props, state}, setState) {
 		const index = active.indexOf(i);
 
 		if (!multiple) {
+			if (index !== -1) {
+				setState({active: []});
+				return;
+			}
+
 			setState({active: [i]});
 			return;
 		}
 
-		if (index > -1) {
+		if (index !== -1) {
 			active.splice(index, 1);
 			setState({active});
 			return;
