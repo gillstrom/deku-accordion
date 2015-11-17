@@ -70,18 +70,16 @@ function render({props, state}, setState) {
 	}
 
 	function getElements() {
-		return items.map((el, i) => {
-			return (
-				<div class={['Accordion-element', {'Accordion-element--active': active.indexOf(i) > -1}]}>
-					<div class='Accordion-heading' onClick={() => setActive(i)}>
-						{el.heading}
-					</div>
-					<div class='Accordion-content'>
-						{el.content}
-					</div>
+		return items.map((el, i) => (
+			<div class={['Accordion-element', {'Accordion-element--active': active.indexOf(i) > -1}]}>
+				<div class='Accordion-heading' onClick={() => setActive(i)}>
+					{el.heading}
 				</div>
-			);
-		});
+				<div class='Accordion-content'>
+					{el.content}
+				</div>
+			</div>
+		));
 	}
 
 	return (
