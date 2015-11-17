@@ -14,10 +14,12 @@
   },
   "scripts": {
     "build": "browserify example/index.js -o example/build.js -dv",
+    "prepublish": "babel index.js --out-file dist.js",
     "test": "xo index.js test.js && ava"
   },
+  "main": "dist.js",
   "files": [
-    "index.js"
+    "dist.js"
   ],
   "keywords": [
     "accordion",
@@ -26,12 +28,11 @@
     "dekujs"
   ],
   "dependencies": {
-    "ava": "^0.2.0",
     "magic-virtual-element": "^1.0.6"
   },
   "devDependencies": {
     "assert-element": "^0.3.1",
-    "ava": "*",
+    "ava": "^0.5.0",
     "babel": "^5.8.23",
     "babel-eslint": "^4.1.1",
     "babelify": "^6.3.0",
