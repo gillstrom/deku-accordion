@@ -25,7 +25,8 @@
     "accordion",
     "component",
     "deku",
-    "dekujs"
+    "dekujs",
+    "deku-component"
   ],
   "dependencies": {
     "magic-virtual-element": "^1.0.6"
