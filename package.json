@@ -39,7 +39,7 @@
     "babelify": "^6.3.0",
     "browserify": "^11.2.0",
     "component-mock": "0.0.2",
-    "deku": "^0.5.6",
+    "deku": "^1.0.0",
     "eslint-config-xo-react": "^0.3.0",
     "eslint-plugin-react": "^3.3.1",
     "xo": "*"
