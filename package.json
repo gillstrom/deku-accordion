@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "assert-element": "^0.3.1",
-    "ava": "^0.5.0",
+    "ava": "*",
     "babel": "^5.8.23",
     "babel-eslint": "^4.1.1",
     "babelify": "^6.3.0",
