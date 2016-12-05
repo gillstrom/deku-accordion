@@ -1,4 +1,5 @@
 /** @jsx dom */
+import deepEqual from 'deep-equal';
 import dom from 'magic-virtual-element';
 
 const propTypes = {
@@ -56,8 +57,7 @@ const getElements = (items, active, multiple, setState) => items.map((el, i) => 
 	</div>
 ));
 
-const afterMount = ({props}, el, setState) => {
-	const {items, multiple} = props;
+const setItems = ({items, multiple}, setState) => {
 	let active = [];
 
 	items.forEach((el, i) => {
@@ -76,6 +76,9 @@ const afterMount = ({props}, el, setState) => {
 	setState({active});
 };
 
+const afterMount = ({props}, el, setState) => setItems(props, setState);
+const afterUpdate = ({props}, prevProps, prevState, setState) => !deepEqual(props, prevProps) && setItems(props, setState);
+
 const render = ({props, state}, setState) => {
 	const {items, multiple} = props;
 	const {active} = state;
@@ -87,4 +90,4 @@ const render = ({props, state}, setState) => {
 	);
 };
 
-export default {afterMount, initialState, propTypes, render};
+export default {afterMount, afterUpdate, initialState, propTypes, render};
