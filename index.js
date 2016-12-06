@@ -1,4 +1,5 @@
 /** @jsx dom */
+import deepEqual from 'deep-equal';
 import dom from 'magic-virtual-element';
 
 const propTypes = {
@@ -16,14 +17,47 @@ const propTypes = {
 	}
 };
 
-function initialState() {
+const initialState = () => {
 	return {
 		active: []
 	};
-}
+};
 
-function afterMount({props}, el, setState) {
-	const {items, multiple} = props;
+const setActive = (i, multiple, active, setState) => () => {
+	const index = active.indexOf(i);
+
+	if (!multiple) {
+		if (index !== -1) {
+			setState({active: []});
+			return;
+		}
+
+		setState({active: [i]});
+		return;
+	}
+
+	if (index !== -1) {
+		active.splice(index, 1);
+		setState({active});
+		return;
+	}
+
+	active.push(i);
+	setState({active});
+};
+
+const getElements = (items, active, multiple, setState) => items.map((el, i) => (
+	<div class={['Accordion-element', {'Accordion-element--active': active.indexOf(i) > -1}]}>
+		<div class='Accordion-heading' onClick={setActive(i, multiple, active, setState)}>
+			{el.heading}
+		</div>
+		<div class='Accordion-content'>
+			{el.content}
+		</div>
+	</div>
+));
+
+const setItems = ({items, multiple}, setState) => {
 	let active = [];
 
 	items.forEach((el, i) => {
@@ -40,53 +74,20 @@ function afterMount({props}, el, setState) {
 	});
 
 	setState({active});
-}
+};
 
-function render({props, state}, setState) {
+const afterMount = ({props}, el, setState) => setItems(props, setState);
+const afterUpdate = ({props}, prevProps, prevState, setState) => !deepEqual(props, prevProps) && setItems(props, setState);
+
+const render = ({props, state}, setState) => {
 	const {items, multiple} = props;
 	const {active} = state;
 
-	function setActive(i) {
-		const index = active.indexOf(i);
-
-		if (!multiple) {
-			if (index !== -1) {
-				setState({active: []});
-				return;
-			}
-
-			setState({active: [i]});
-			return;
-		}
-
-		if (index !== -1) {
-			active.splice(index, 1);
-			setState({active});
-			return;
-		}
-
-		active.push(i);
-		setState({active});
-	}
-
-	function getElements() {
-		return items.map((el, i) => (
-			<div class={['Accordion-element', {'Accordion-element--active': active.indexOf(i) > -1}]}>
-				<div class='Accordion-heading' onClick={() => setActive(i)}>
-					{el.heading}
-				</div>
-				<div class='Accordion-content'>
-					{el.content}
-				</div>
-			</div>
-		));
-	}
-
 	return (
 		<div class={['Accordion', props.class]}>
-			{getElements()}
+			{getElements(items, active, multiple, setState)}
 		</div>
 	);
-}
+};
 
-export default {afterMount, initialState, propTypes, render};
+export default {afterMount, afterUpdate, initialState, propTypes, render};

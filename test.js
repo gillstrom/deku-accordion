@@ -14,7 +14,7 @@ const items = [{
 	heading: 'Heading 3'
 }];
 
-test('accordion', t => {
+test.cb('accordion', t => {
 	const mock = componentMock(Accordion);
 	const el = mock.render({props: {
 		items
