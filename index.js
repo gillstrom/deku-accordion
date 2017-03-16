@@ -14,6 +14,9 @@ const propTypes = {
 	},
 	multiple: {
 		type: 'boolean'
+	},
+	onClick: {
+		type: 'function'
 	}
 };
 
@@ -23,32 +26,40 @@ const initialState = () => {
 	};
 };
 
-const setActive = (i, multiple, active, setState) => () => {
+const handleSetActive = (obj, onClick, setState) => {
+	setState(obj);
+
+	if (onClick) {
+		onClick(obj.active);
+	}
+};
+
+const setActive = (i, {multiple, onClick}, {active}, setState) => () => {
 	const index = active.indexOf(i);
 
 	if (!multiple) {
 		if (index !== -1) {
-			setState({active: []});
+			handleSetActive({active: []}, onClick, setState);
 			return;
 		}
 
-		setState({active: [i]});
+		handleSetActive({active: [i]}, onClick, setState);
 		return;
 	}
 
 	if (index !== -1) {
 		active.splice(index, 1);
-		setState({active});
+		handleSetActive({active}, onClick, setState);
 		return;
 	}
 
 	active.push(i);
-	setState({active});
+	handleSetActive({active}, onClick, setState);
 };
 
-const getElements = (items, active, multiple, setState) => items.map((el, i) => (
+const getElements = ({items, multiple, onClick}, {active}, setState) => items.map((el, i) => (
 	<div class={['Accordion-element', {'Accordion-element--active': active.indexOf(i) > -1}]}>
-		<div class='Accordion-heading' onClick={setActive(i, multiple, active, setState)}>
+		<div class='Accordion-heading' onClick={setActive(i, {multiple, onClick}, {active}, setState)}>
 			{el.heading}
 		</div>
 		<div class='Accordion-content'>
@@ -80,12 +91,9 @@ const afterMount = ({props}, el, setState) => setItems(props, setState);
 const afterUpdate = ({props}, prevProps, prevState, setState) => !deepEqual(props, prevProps) && setItems(props, setState);
 
 const render = ({props, state}, setState) => {
-	const {items, multiple} = props;
-	const {active} = state;
-
 	return (
 		<div class={['Accordion', props.class]}>
-			{getElements(items, active, multiple, setState)}
+			{getElements(props, state, setState)}
 		</div>
 	);
 };
