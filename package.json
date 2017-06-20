@@ -14,7 +14,7 @@
   },
   "scripts": {
     "build": "browserify -o example/build.js -d example/index.js -t [ babelify --presets [ es2015 react ] ]",
-    "prepublish": "babel --presets es2015,react,stage-3 --out-file dist.js index.js ",
+    "prepublish": "babel --presets es2015,react,stage-3 --plugins array-includes --out-file dist.js index.js ",
     "test": "xo && ava"
   },
   "main": "dist.js",
@@ -36,6 +36,7 @@
     "assert-element": "^0.3.1",
     "ava": "*",
     "babel-cli": "^6.4.0",
+    "babel-plugin-array-includes": "^2.0.3",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-3": "^6.24.1",
