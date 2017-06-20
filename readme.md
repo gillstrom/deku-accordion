@@ -41,7 +41,7 @@ export function render() {
 * `class` adds classes to the component
 * `items` is the array of accordion elements
 * `multiple` lets you have several items open at once
-* `onClick` returns currently active indexes
+* `onClick` returns currently active indexes and clicked item
 
 ## License
 

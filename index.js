@@ -26,40 +26,40 @@ const initialState = () => {
 	};
 };
 
-const handleSetActive = (obj, onClick, setState) => {
+const handleSetActive = (obj, {el, i}, onClick, setState) => {
 	setState(obj);
 
 	if (onClick) {
-		onClick(obj.active);
+		onClick(obj.active, {...el, i, isOpen: obj.active.indexOf(i) !== -1});
 	}
 };
 
-const setActive = (i, {multiple, onClick}, {active}, setState) => () => {
+const setActive = (i, {el, multiple, onClick}, {active}, setState) => () => {
 	const index = active.indexOf(i);
 
 	if (!multiple) {
 		if (index !== -1) {
-			handleSetActive({active: []}, onClick, setState);
+			handleSetActive({active: []}, {el, i}, onClick, setState);
 			return;
 		}
 
-		handleSetActive({active: [i]}, onClick, setState);
+		handleSetActive({active: [i]}, {el, i}, onClick, setState);
 		return;
 	}
 
 	if (index !== -1) {
 		active.splice(index, 1);
-		handleSetActive({active}, onClick, setState);
+		handleSetActive({active}, {el, i}, onClick, setState);
 		return;
 	}
 
 	active.push(i);
-	handleSetActive({active}, onClick, setState);
+	handleSetActive({active}, {el, i}, onClick, setState);
 };
 
 const getElements = ({items, multiple, onClick}, {active}, setState) => items.map((el, i) => (
 	<div class={['Accordion-element', {'Accordion-element--active': active.indexOf(i) > -1}]}>
-		<div class='Accordion-heading' onClick={setActive(i, {multiple, onClick}, {active}, setState)}>
+		<div class='Accordion-heading' onClick={setActive(i, {el, multiple, onClick}, {active}, setState)}>
 			{el.heading}
 		</div>
 		<div class='Accordion-content'>

@@ -3,8 +3,8 @@ import dom from 'magic-virtual-element';
 import {render, tree} from 'deku';
 import Accordion from '../';
 
-const onClick = arr => {
-	console.log(arr);
+const onClick = (arr, clickedItem) => {
+	console.log(arr, clickedItem);
 };
 
 const items = [{
