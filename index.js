@@ -20,17 +20,15 @@ const propTypes = {
 	}
 };
 
-const initialState = () => {
-	return {
-		active: []
-	};
-};
+const initialState = () => ({
+	active: []
+});
 
 const handleSetActive = (obj, {el, i}, onClick, setState) => {
 	setState(obj);
 
 	if (onClick) {
-		onClick(obj.active, {...el, i, isOpen: obj.active.indexOf(i) !== -1});
+		onClick(obj.active, {...el, i, isOpen: obj.active.includes(i)});
 	}
 };
 
@@ -57,13 +55,13 @@ const setActive = (i, {el, multiple, onClick}, {active}, setState) => () => {
 	handleSetActive({active}, {el, i}, onClick, setState);
 };
 
-const getElements = ({items, multiple, onClick}, {active}, setState) => items.map((el, i) => (
-	<div class={['Accordion-element', {'Accordion-element--active': active.indexOf(i) > -1}]}>
-		<div class='Accordion-heading' onClick={setActive(i, {el, multiple, onClick}, {active}, setState)}>
-			{el.heading}
+const getElements = ({items, multiple, onClick}, {active}, setState) => items.map((x, i) => (
+	<div key={i} class={['Accordion-element', {'Accordion-element--active': active.includes(i)}]}>
+		<div class='Accordion-heading' onClick={setActive(i, {x, multiple, onClick}, {active}, setState)}>
+			{x.heading}
 		</div>
 		<div class='Accordion-content'>
-			{el.content}
+			{x.content}
 		</div>
 	</div>
 ));
@@ -71,18 +69,18 @@ const getElements = ({items, multiple, onClick}, {active}, setState) => items.ma
 const setItems = ({items, multiple}, setState) => {
 	let active = [];
 
-	items.forEach((el, i) => {
-		if (!el.active) {
-			return;
+	for (const [x, i] of items.entries()) {
+		if (!x.active) {
+			continue;
 		}
 
 		if (!multiple) {
 			active = [i];
-			return;
+			continue;
 		}
 
 		active.push(i);
-	});
+	}
 
 	setState({active});
 };
@@ -90,12 +88,10 @@ const setItems = ({items, multiple}, setState) => {
 const afterMount = ({props}, el, setState) => setItems(props, setState);
 const afterUpdate = ({props}, prevProps, prevState, setState) => !deepEqual(props, prevProps) && setItems(props, setState);
 
-const render = ({props, state}, setState) => {
-	return (
-		<div class={['Accordion', props.class]}>
-			{getElements(props, state, setState)}
-		</div>
-	);
-};
+const render = ({props, state}, setState) => (
+	<div class={['Accordion', props.class]}>
+		{getElements(props, state, setState)}
+	</div>
+);
 
 export default {afterMount, afterUpdate, initialState, propTypes, render};

@@ -1,7 +1,7 @@
 import assertElement from 'assert-element';
 import componentMock from 'component-mock';
 import test from 'ava';
-import Accordion from './';
+import m from '.';
 
 const items = [{
 	content: 'Content 1',
@@ -14,11 +14,9 @@ const items = [{
 	heading: 'Heading 3'
 }];
 
-test.cb('accordion', t => {
-	const mock = componentMock(Accordion);
-	const el = mock.render({props: {
-		items
-	}});
+test(() => {
+	const mock = componentMock(m);
+	const el = mock.render({props: {items}});
 
 	assertElement.isNode(el, 'div');
 	assertElement.hasClass(el, 'Accordion');
@@ -27,6 +25,4 @@ test.cb('accordion', t => {
 		assertElement.isNode(child, 'div');
 		assertElement.hasChildren(child);
 	});
-
-	t.end();
 });

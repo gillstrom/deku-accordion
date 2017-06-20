@@ -6,7 +6,7 @@
 ## Install
 
 ```
-$ npm install --save deku-accordion
+$ npm install deku-accordion
 ```
 
 
@@ -15,7 +15,7 @@ $ npm install --save deku-accordion
 ```js
 import Accordion from 'deku-accordion';
 
-export function render() {
+export const render = () => {
 	const items = [{
 		content: <div>Content 1</div>,
 		heading: 'Heading 1'
@@ -36,12 +36,13 @@ export function render() {
 ```
 
 
-## Attributes
+## Props
 
 * `class` adds classes to the component
 * `items` is the array of accordion elements
 * `multiple` lets you have several items open at once
 * `onClick` returns currently active indexes and clicked item
+
 
 ## License
 
