@@ -1,75 +1,75 @@
 {
-  "name": "deku-accordion",
-  "version": "2.4.0",
-  "description": "accordion component for deku",
-  "license": "MIT",
-  "repository": "gillstrom/deku-accordion",
-  "author": {
-    "name": "Andreas Gillström",
-    "email": "andreasgillstrom@gmail.com",
-    "url": "github.com/gillstrom"
-  },
-  "engines": {
-    "node": ">=0.10.0"
-  },
-  "scripts": {
-    "build": "browserify -o example/build.js -d example/index.js -t [ babelify --presets [ es2015 react ] ]",
-    "prepublish": "babel --presets es2015,react,stage-3 --plugins array-includes --out-file dist.js index.js ",
-    "test": "xo && ava"
-  },
-  "main": "dist.js",
-  "files": [
-    "dist.js"
-  ],
-  "keywords": [
-    "accordion",
-    "component",
-    "deku",
-    "dekujs",
-    "deku-component"
-  ],
-  "dependencies": {
-    "deep-equal": "^1.0.1",
-    "magic-virtual-element": "^1.0.6"
-  },
-  "devDependencies": {
-    "assert-element": "^0.3.1",
-    "ava": "*",
-    "babel-cli": "^6.4.0",
-    "babel-plugin-array-includes": "^2.0.3",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13",
-    "babel-preset-stage-3": "^6.24.1",
-    "babelify": "^7.2.0",
-    "browserify": "^14.4.0",
-    "component-mock": "0.1.0",
-    "deku": "^1.0.0",
-    "eslint-config-xo-react": "^0.12.0",
-    "eslint-plugin-react": "^7.1.0",
-    "xo": "*"
-  },
-  "ava": {
-    "failWithoutAssertions": false
-  },
-  "xo": {
-    "envs": [
-      "browser"
-    ],
-    "extends": [
-      "xo-react"
-    ],
-    "ignores": [
-      "dist.js"
-    ],
-    "rules": {
-      "jsx-quotes": [
-        2,
-        "prefer-single"
-      ],
-      "react/no-array-index-key": 0,
-      "react/no-unknown-property": 0,
-      "react/prop-types": 0,
-      "quote-props": 0
-    }
-  }
+	"name": "deku-accordion",
+	"version": "2.4.0",
+	"description": "accordion component for deku",
+	"license": "MIT",
+	"repository": "gillstrom/deku-accordion",
+	"author": {
+		"name": "Andreas Gillström",
+		"email": "andreasgillstrom@gmail.com",
+		"url": "github.com/gillstrom"
+	},
+	"engines": {
+		"node": ">=0.10.0"
+	},
+	"scripts": {
+		"build": "browserify -o example/build.js -d example/index.js -t [ babelify --presets [ es2015 react ] ]",
+		"prepublish": "babel --presets es2015,react,stage-3 --plugins array-includes --out-file dist.js index.js ",
+		"test": "xo && ava"
+	},
+	"main": "dist.js",
+	"files": [
+		"dist.js"
+	],
+	"keywords": [
+		"accordion",
+		"component",
+		"deku",
+		"dekujs",
+		"deku-component"
+	],
+	"dependencies": {
+		"deep-equal": "^1.0.1",
+		"magic-virtual-element": "^1.0.6"
+	},
+	"devDependencies": {
+		"assert-element": "^0.3.1",
+		"ava": "*",
+		"babel-cli": "^6.4.0",
+		"babel-plugin-array-includes": "^2.0.3",
+		"babel-preset-es2015": "^6.3.13",
+		"babel-preset-react": "^6.3.13",
+		"babel-preset-stage-3": "^6.24.1",
+		"babelify": "^7.2.0",
+		"browserify": "^14.4.0",
+		"component-mock": "0.1.0",
+		"deku": "^1.0.0",
+		"eslint-config-xo-react": "^0.13.0",
+		"eslint-plugin-react": "^7.1.0",
+		"xo": "*"
+	},
+	"ava": {
+		"failWithoutAssertions": false
+	},
+	"xo": {
+		"envs": [
+			"browser"
+		],
+		"extends": [
+			"xo-react"
+		],
+		"ignores": [
+			"dist.js"
+		],
+		"rules": {
+			"jsx-quotes": [
+				2,
+				"prefer-single"
+			],
+			"react/no-array-index-key": 0,
+			"react/no-unknown-property": 0,
+			"react/prop-types": 0,
+			"quote-props": 0
+		}
+	}
 }
